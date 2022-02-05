@@ -2,7 +2,9 @@ const express = require('express');
 const app = express();
 
 const indexRouter = require('./routes/index');
+const movieRouter = require('./routes/movie');
 app.use('/', indexRouter);
+app.use('/movie', movieRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

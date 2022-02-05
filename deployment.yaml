@@ -26,16 +26,23 @@ spec:
         app: movie-app
     spec:
       containers:
-        - name: movie-node
-          image: akkuakhildev/kub-movies-api:v1
+        - name: movie-app
+          image: akkuakhildev/kub-movies-api:v2
           imagePullPolicy: Always
+          volumeMounts:
+            - name: movie-volume
+              mountPath: /app/data
           resources:
             limits:
-              memory: 512Mi
-              cpu: '0.5'
+              memory: 256Mi
+              cpu: '0.2'
           livenessProbe:
             httpGet:
               path: /
               port: 80
             periodSeconds: 10
             initialDelaySeconds: 10
+      volumes:
+        - name: movie-volume
+          persistentVolumeClaim:
+            claimName: host-pvc
