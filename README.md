@@ -11,9 +11,9 @@ _This project is developed using express with kuberenetes support._
 5. Start Minikube `minikube start --driver=virtualbox`
 6. Check Minikube status`minikube status`
 7. Open Minikube dashboard `minikube dashboard`
-8. Start App `kubectl apply -f=volume.yaml -f=deployment.yaml`
+8. Start App `kubectl apply -f=volume.yaml -f=environment.yaml -f=deployment.yaml`
 9. View App `minikube service movie-service `
-10. Stop App `kubectl delete -f=volume.yaml -f=deployment.yaml`
+10. Stop App `kubectl delete -f=volume.yaml -f=environment.yaml -f=deployment.yaml`
 
 ## Endpoints
 

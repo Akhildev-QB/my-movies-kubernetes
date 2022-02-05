@@ -29,6 +29,12 @@ spec:
         - name: movie-app
           image: akkuakhildev/kub-movies-api:v2
           imagePullPolicy: Always
+          env:
+            - name: DATA_FOLDER
+              valueFrom:
+                configMapKeyRef:
+                  name: data-store-env
+                  key: folder
           volumeMounts:
             - name: movie-volume
               mountPath: /app/data

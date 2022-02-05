@@ -1,7 +1,12 @@
 const fs = require('fs');
 const path = require('path');
 
-const filePath = path.join(__dirname, '..', 'data', 'movie.json');
+const filePath = path.join(
+  __dirname,
+  '..',
+  process.env.DATA_FOLDER,
+  'movie.json'
+);
 
 exports.listMovie = (req, res, next) => {
   try {
