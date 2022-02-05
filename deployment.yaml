@@ -1,0 +1,41 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: movie-service
+spec:
+  selector:
+    app: movie-app
+  type: LoadBalancer
+  ports:
+    - protocol: 'TCP'
+      port: 80
+      targetPort: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: movie-app-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: movie-app
+  template:
+    metadata:
+      labels:
+        app: movie-app
+    spec:
+      containers:
+        - name: movie-node
+          image: akkuakhildev/kub-movies-api:v1
+          imagePullPolicy: Always
+          resources:
+            limits:
+              memory: 512Mi
+              cpu: '0.5'
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 80
+            periodSeconds: 10
+            initialDelaySeconds: 10
